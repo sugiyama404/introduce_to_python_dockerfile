@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    bash=5.1-2+deb11u1 \
+    wget=1.21.3-1+b2 \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 

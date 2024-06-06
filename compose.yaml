@@ -9,8 +9,10 @@ services:
       DATABASE_NAME: ecsiteproject
       DATABASE_USER: pythonMySql1
       DATABASE_PASSWORD: pythonMySql1
+      DATABASE_HOST: db
       DATABASE_PORT: 3306
-    command: ["python", "main.py"]
+      DEBUG_MODE: true
+    command: ["python", "opt/main.py"]
     volumes:
       - ./apserver:/app
     tty: true
