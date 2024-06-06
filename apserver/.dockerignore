@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yml
+compose.yaml
+Dockerfile
+.dockerignore
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+**/*.py[cod]
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Virtual environment
+.env
+.venv/
+venv/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS icon file
+Icon?
+._*
+
+# logfile
+*.log
+
+# cache file
+*.cache/
+*.pytest_cache/
+*.coverage
