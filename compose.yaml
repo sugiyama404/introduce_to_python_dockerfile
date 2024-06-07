@@ -1,0 +1,38 @@
+services:
+  api:
+    restart: always
+    build:
+      context: ./apserver
+      target: developer
+    container_name: "api_ec_site"
+    environment:
+      DATABASE_NAME: ecsiteproject
+      DATABASE_USER: pythonMySql1
+      DATABASE_PASSWORD: pythonMySql1
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+      DEBUG_MODE: true
+    command: ["python", "opt/main.py"]
+    volumes:
+      - ./apserver:/app
+    tty: true
+    ports:
+      - 8000:8000
+  db:
+    image: mysql:8.0.37-oracle
+    container_name: "db_ec_site"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ecsiteproject
+      MYSQL_USER: pythonMySql1
+      MYSQL_PASSWORD: pythonMySql1
+      TZ: 'Asia/Tokyo'
+    command: mysqld
+    volumes:
+      - ./dbserver/conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./dbserver/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    cap_add:
+      - SYS_NICE
