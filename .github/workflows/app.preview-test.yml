@@ -1,0 +1,33 @@
+name: "app preview & test"
+
+on:
+  push:
+    branches:
+      - main
+      - feature-readme
+    paths:
+      - apserver/**
+      - .github/workflows/**
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Launching the Docker Container
+        run: |
+          docker-compose up -d
+
+      - name: sleep for waiting launch db
+        run: sleep 120s
+
+      - name: Running Tests
+        run: |
+          docker-compose exec -t api pytest opt/tests/
