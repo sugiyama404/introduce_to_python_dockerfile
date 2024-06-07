@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 from datetime import datetime
 import pytz
 
-import settings
+import opt.settings as settings
 
 Base = declarative_base()
 

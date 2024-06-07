@@ -11,4 +11,4 @@ def heltch_check():
         JSON形式のレスポンス: {"answer": "helloworld"}
         ステータスコード: 200
     """
-    return jsonify([{"answer": "helloworld"}]), 200
+    return jsonify({"answer": "helloworld"}), 200

@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-import settings
+import opt.settings as settings
 
 def get_engine()->any:
     """

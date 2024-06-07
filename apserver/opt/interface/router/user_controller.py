@@ -55,9 +55,9 @@ def create_user():
             description: 要求が不正です
     """
     data = request.get_json()
-    req_user = User(UserName=data['username'], Email=data['email'], Password=data['password'])
-    user_usecase = UserUsecase(UserService(UserRepository(conn)))
     try:
+        req_user = User(UserName=data['username'], Email=data['email'], Password=data['password'])
+        user_usecase = UserUsecase(UserService(UserRepository(conn)))
         user = user_usecase.create_user(req_user)
         return jsonify({'id': str(user.UserID), 'username': user.UserName, 'email': user.Email}), 201
     except Exception as e:
@@ -75,8 +75,8 @@ def update_user(user_id):
     """
     user_usecase = UserUsecase(UserService(UserRepository(conn)))
     data = request.get_json()
-    update_user = User(UserID=user_id, UserName=data['username'], Email=data['email'], Password=data['password'])
     try:
+        update_user = User(UserID=user_id, UserName=data['username'], Email=data['email'], Password=data['password'])
         user = user_usecase.update_user(update_user)
         return jsonify({'id': user.UserID, 'username': user.UserName, 'email': user.Email}), 200
     except Exception as e:
@@ -98,3 +98,4 @@ def delete_user(user_id):
         return jsonify({'message': 'User deleted successfully'}), 200
     except Exception as e:
         return jsonify({'message': 'User not found'}), 404
+
