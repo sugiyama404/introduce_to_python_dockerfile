@@ -17,6 +17,5 @@ dbport=os.getenv('DATABASE_PORT')
 
 SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{dbuser}:{dbpassword}@{dbhost}/{dbname}?charset=utf8'
 
-debug_mode = os.getenv('DEBUG_MODE')
-if debug_mode == 'true':
-    DEBUG = True
+debug_mode = True if os.getenv('DEBUG_MODE', True) in ('true', True) else False
+
