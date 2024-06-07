@@ -1,5 +1,6 @@
 from opt.domain.user import User
 from opt.application.services.user_service import UserService
+from opt.utils.helper import generate_password_hash
 
 from typing import List
 
@@ -31,8 +32,7 @@ class UserUsecase:
         try:
             return self.user_service.get_user_by_id(user_id)
         except Exception as e:
-            print(f"Error getting user by ID {user_id}: {e}")
-            raise
+            raise Exception(f"Error getting user by ID {user_id}") from e
 
     def create_user(self, user: User) -> User:
         """
@@ -43,10 +43,10 @@ class UserUsecase:
             User: 作成されたユーザーオブジェクト
         """
         try:
+            user.Password = generate_password_hash(user.Password)
             return self.user_service.create_user(user)
         except Exception as e:
-            print(f"Error creating user: {e}")
-            raise
+            raise Exception(f"Error creating user") from e
 
     def update_user(self, user: User) -> User:
         """既存のユーザーを更新します。
@@ -56,10 +56,10 @@ class UserUsecase:
             User: 更新されたユーザーオブジェクト
         """
         try:
+            user.Password = generate_password_hash(user.Password)
             return self.user_service.update_user(user)
         except Exception as e:
-            print(f"Error updating user: {e}")
-            raise
+            raise Exception(f"Error updating user") from e
 
     def delete_user(self, user_id: int) -> None:
         """
@@ -70,5 +70,4 @@ class UserUsecase:
         try:
             self.user_service.delete_user(user_id)
         except Exception as e:
-            print(f"Error deleting user with ID {user_id}: {e}")
-            raise
+            raise Exception(f"Error deleting user with ID {user_id}") from e

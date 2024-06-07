@@ -45,9 +45,9 @@ CREATE TABLE OrderItems (
 );
 
 INSERT INTO Users (UserName, Email, Password) VALUES
-('Alice', 'alice@example.com', 'password123'),
-('Bob', 'bob@example.com', 'password456'),
-('Charlie', 'charlie@example.com', 'password789');
+('Alice', 'alice@example.com', '$2b$12$3pMPBiKmDCyKuL5sbmFsJe8TRCXTbuCNLYK03LC7Uty4wn.lCvz..'),
+('Bob', 'bob@example.com', '$2b$12$3pMPBiKmDCyKuL5sbmFsJe8TRCXTbuCNLYK03LC7Uty4wn.lCvz..'),
+('Charlie', 'charlie@example.com', '$2b$12$3pMPBiKmDCyKuL5sbmFsJe8TRCXTbuCNLYK03LC7Uty4wn.lCvz..');
 
 INSERT INTO Products (ProductName, Description, Price, Stock) VALUES
 ('Laptop', 'A high-performance laptop', 999.99, 50),

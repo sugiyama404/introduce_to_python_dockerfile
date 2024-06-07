@@ -64,11 +64,12 @@ class UserRepository:
             User: 更新されたユーザーオブジェクト
         """
         session = Session(self.conn)
+        check_user = session.query(User).filter_by(UserID=user.UserID).first()
+        if check_user is None:
+            raise RuntimeError("Failed to update user.")
         session.merge(user)
         session.commit()
         new_user = session.query(User).filter_by(UserID=user.UserID).first()
-        if new_user is None:
-            raise RuntimeError("Failed to update user.")
         return new_user
 
     def delete_user(self, user_id: int) -> None:

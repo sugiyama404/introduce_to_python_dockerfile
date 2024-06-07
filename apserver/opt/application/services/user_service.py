@@ -66,7 +66,7 @@ class UserService:
         try:
             return self.user_repository.update_user(user)
         except Exception as e:
-            raise Exception("ユーザーの更新に失敗しました。") from e
+            raise Exception("ユーザーの削除に失敗しました。") from e
 
     def delete_user(self, user_id: int) -> None:
         """
